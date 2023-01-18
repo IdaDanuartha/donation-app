@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'poppins-regular';
+    src: url('../fonts/poppins/Poppins-Regular.ttf') format("truetype");
+}
+@font-face {
+    font-family: 'poppins-semibold';
+    src: url('../fonts/poppins/Poppins-SemiBold.ttf') format("truetype");
+}
+@font-face {
+    font-family: 'poppins-bold';
+    src: url('../fonts/poppins/Poppins-Bold.ttf') format("truetype");
+}
+
+* {
+    font-family: 'poppins-regular', Arial, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'poppins-bold', Arial, sans-serif !important;
+}
