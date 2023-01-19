@@ -186,15 +186,30 @@ if(isset($_POST['store'])) {
               <form action="" method="post">
                 <div class="mb-4">
                     <label for="name">Name</label> 
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Input reviewer name">                    
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Input reviewer name" value="<?= isset($_POST['name']) ? $_POST['name'] : '' ?>"> 
+                    <?php if(isset($_SESSION['error']['name'])) : ?>
+                        <div class="alert alert-danger mt-2">
+                            <?= $_SESSION['error']['name'] ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="mb-4">
                     <label for="subject">Subject</label> 
-                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Input subject review">                    
+                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Input subject review" value="<?= isset($_POST['subject']) ? $_POST['subject'] : '' ?>">  
+                    <?php if(isset($_SESSION['error']['subject'])) : ?>
+                        <div class="alert alert-danger mt-2">
+                            <?= $_SESSION['error']['subject'] ?>
+                        </div>
+                    <?php endif; ?>                  
                 </div> 
                 <div class="mb-4">
                     <label for="message">Message</label> 
-                    <textarea type="text" name="message" id="message" class="form-control" placeholder="Input message review" rows="6"></textarea>                    
+                    <textarea type="text" name="message" id="message" class="form-control" placeholder="Input message review" rows="6"><?= isset($_POST['message']) ? $_POST['message'] : '' ?></textarea>                    
+                    <?php if(isset($_SESSION['error']['message'])) : ?>
+                        <div class="alert alert-danger mt-2">
+                            <?= $_SESSION['error']['message'] ?>
+                        </div>
+                    <?php endif; ?>
                 </div>                
                 <button type="submit" name="store" class="btn btn-md btn-primary border-0 shadow me-2">Add Review</button>
               </form>

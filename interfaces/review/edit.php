@@ -182,20 +182,35 @@ if(isset($_POST['update'])) {
           <a href="index.php" class="btn btn-md btn-primary border-0 shadow mb-3" type="button"><i class="fa fa-long-arrow-alt-left me-2"></i> Back</a>
           <div class="card border-0 shadow">
             <div class="card-body">
-              <h5><i class="fa fa-clone"></i> Add New Review</h5>
+              <h5><i class="fa fa-clone"></i> Edit Review</h5>
               <hr>
               <form action="" method="post">
                 <div class="mb-4">
                     <label for="name">Name</label> 
                     <input type="text" name="name" id="name" value="<?= $data['name'] ?>" class="form-control" placeholder="Input reviewer name">                    
+                    <?php if(isset($_SESSION['error']['name'])) : ?>
+                        <div class="alert alert-danger mt-2">
+                            <?= $_SESSION['error']['name'] ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="mb-4">
                     <label for="subject">Subject</label> 
                     <input type="text" name="subject" id="subject" value="<?= $data['subject'] ?>" class="form-control" placeholder="Input subject review">                    
+                    <?php if(isset($_SESSION['error']['subject'])) : ?>
+                        <div class="alert alert-danger mt-2">
+                            <?= $_SESSION['error']['subject'] ?>
+                        </div>
+                    <?php endif; ?>
                 </div> 
                 <div class="mb-4">
                     <label for="message">Message</label> 
                     <textarea type="text" name="message" id="message" class="form-control" placeholder="Input message review" rows="6"><?= $data['message'] ?></textarea>                    
+                    <?php if(isset($_SESSION['error']['message'])) : ?>
+                        <div class="alert alert-danger mt-2">
+                            <?= $_SESSION['error']['message'] ?>
+                        </div>
+                    <?php endif; ?>
                 </div>                
                 <button type="submit" name="update" class="btn btn-md btn-primary border-0 shadow me-2">Save Changes</button>
               </form>

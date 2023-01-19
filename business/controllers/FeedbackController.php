@@ -5,7 +5,7 @@ require_once realpath(dirname(__FILE__) . '/../models/Review.php');
 require_once realpath(dirname(__FILE__) . '/../core/Flasher.php');
 require_once realpath(dirname(__FILE__) . '/../../middlewares/ReviewMiddleware.php');
 
-class ReviewController extends Controller {
+class FeedbackController extends Controller {
     private $user;
     private $review;
     private $reviewMiddleware;
