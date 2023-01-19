@@ -51,7 +51,7 @@ if(isset($_POST['submit'])) {
               <label for="email">Email</label>
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon1">
-                  <i class="fa fa-key"></i>
+                  <i class="fa-solid fa-envelope"></i>
                 </span>
                 <input
                   type="text"
