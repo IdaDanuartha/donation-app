@@ -3,23 +3,19 @@ session_start();
 require_once "../../business/controllers/FeedbackController.php";
 
 $feedback = new FeedbackController();
+$data = $feedback->getfeedback($_GET['id']);
 
 if(!$feedback->session()) {
   header('Location: ../auth/login.php');
-}
-
-if(isset($_GET['keyword'])) {
-    $feedback->getFeedbacks();
 }
 
 if(isset($_POST['logout'])) {
     $feedback->logout();
 }
 
-if(isset($_POST['delete'])) {
-    $feedback->destroy();
+if(isset($_POST['update'])) {
+  $feedback->update($_GET['id']);
 }
-
 
 ?>
 
@@ -33,7 +29,7 @@ if(isset($_POST['delete'])) {
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Feedback Page</title>
+    <title>Edit Feedback</title>
 </head>
 <body>
     <!-- Toggle sidebar -->
@@ -108,7 +104,7 @@ if(isset($_POST['delete'])) {
                 </li>
 
                 <li class="nav-item">
-                    <a href="../review/index.php" class="nav-link d-flex justify-content-between">
+                    <a href="index.php" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
@@ -125,7 +121,7 @@ if(isset($_POST['delete'])) {
                 </li>
 
                 <li class="nav-item active">
-                    <a href="index.php" class="nav-link d-flex justify-content-between">
+                    <a href="../feedback/index.php" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
@@ -172,95 +168,61 @@ if(isset($_POST['delete'])) {
         <nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
             <div class="container-fluid px-0">
                 <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
-                    <div class="d-flex align-items-center">
-                        <h3>Feedback Page</h3>
-                    </div>
+                  <div class="d-flex align-items-center">
+                      <h3>Edit Feedback Page</h3>
+                  </div>
                 </div>
             </div>
-        </nav>
+            </nav>
 
-        <div class="container-fluid mb-5 mt-5">
-        <div class="d-flex justify-content-between mb-2">
-            <div class="">
-                <a href="create.php" class="btn btn-md btn-primary border-0 shadow w-100 py-3 px-4" type="button"><i
-                    class="fa fa-plus-circle"></i>
-                Add Feedback</a>
-            </div>
-            <div class="">
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-0 shadow py-3 px-4" name="keyword" placeholder="Search feedback...">
-                        <span class="input-group-text border-0 shadow">
-                            <i class="fa fa-search"></i>
-                        </span>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="row mt-1">
-            <div class="col-md-12">
-                <div class="card border-0 shadow">
-                    <div class="card-body">
-
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
-                                <thead class="thead-dark">
-                                    <tr class="border-0">
-                                        <th class="border-0 rounded-start" style="width:5%">No.</th>
-                                        <th class="border-0">Name</th>
-                                        <th class="border-0">Subject</th>
-                                        <th class="border-0 rounded-end" style="width:15%">Action</th>
-                                    </tr>
-                                </thead>
-                                <div class="mt-2"></div>
-                                <tbody>
-                                    <?php foreach($feedback->getFeedbacks() as $index => $feedback) : ?>
-                                    <tr>
-                                        <td class="fw-bold text-center"><?= ++$index ?></td>
-                                        <td><?= $feedback['name'] ?></td>
-                                        <td><?= $feedback['subject'] ?></td>
-                                        <td class="">
-                                            <a href="edit.php?id=<?= $feedback['id'] ?>" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></a>
-                                            <button data-bs-toggle="modal" data-bs-target="#deleteFeedbackModal" value="<?= $feedback['id'] ?>" class="btn btn-sm btn-danger border-0 delete-btn"><i class="fa fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+    <!-- Content -->
+    <div class="container-fluid mb-5 mt-5">
+      <div class="row">
+        <div class="col-md-12">
+          <a href="index.php" class="btn btn-md btn-primary border-0 shadow mb-3" type="button"><i class="fa fa-long-arrow-alt-left me-2"></i> Back</a>
+          <div class="card border-0 shadow">
+            <div class="card-body">
+              <h5><i class="fa fa-clone"></i> Edit Feedback</h5>
+              <hr>
+              <form action="" method="post">
+                <div class="mb-4">
+                    <label for="name">Name</label> 
+                    <input type="text" name="name" id="name" value="<?= $data['name'] ?>" class="form-control" placeholder="Input name">                    
+                    <?php if(isset($_SESSION['error']['name'])) : ?>
+                        <div class="alert alert-danger mt-2">
+                            <?= $_SESSION['error']['name'] ?>
                         </div>
-                        <!-- <Pagination :links="classrooms.links" align="end" /> -->
-                    </div>
+                    <?php endif; ?>
                 </div>
+                <div class="mb-4">
+                    <label for="subject">Subject</label> 
+                    <input type="text" name="subject" id="subject" value="<?= $data['subject'] ?>" class="form-control" placeholder="Input subject review">                    
+                    <?php if(isset($_SESSION['error']['subject'])) : ?>
+                        <div class="alert alert-danger mt-2">
+                            <?= $_SESSION['error']['subject'] ?>
+                        </div>
+                    <?php endif; ?>
+                </div> 
+                <div class="mb-4">
+                    <label for="message">Message</label> 
+                    <textarea type="text" name="message" id="message" class="form-control" placeholder="Input message review" rows="6"><?= $data['message'] ?></textarea>                    
+                    <?php if(isset($_SESSION['error']['message'])) : ?>
+                        <div class="alert alert-danger mt-2">
+                            <?= $_SESSION['error']['message'] ?>
+                        </div>
+                    <?php endif; ?>
+                </div>                
+                <button type="submit" name="update" class="btn btn-md btn-primary border-0 shadow me-2">Save Changes</button>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
     </main>
 
-    <!-- Modal -->
-    <div class="modal fade" id="deleteFeedbackModal" tabindex="-1" aria-labelledby="deleteFeedbackModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-body">
-            <h1 class="modal-title fs-5 text-center" id="deleteFeedbackModalLabel">Delete Feedback</h1>
-            <div id="delete-box">
-                Are you sure you want to delete this feedback? this process cannot be undone.
-            </div>
-            <form class="d-flex justify-content-center mt-4" action="" method="post">
-                <input type="hidden" name="id" id="data_id">
-                <button type="button" class="btn btn-primary me-3" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-danger" name="delete">Delete</button>
-            </form>
-        </div>
-        </div>
-    </div>
-    </div>
-
-    </main>
-
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="../assets/js/volt.js"></script>
-    <script src="../assets/js/script.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
 </body>
 </html>
