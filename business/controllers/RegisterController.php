@@ -2,14 +2,7 @@
 require_once 'Controller.php';
 require_once realpath(dirname(__FILE__) . '/../models/User.php');
 
-class RegisterController {
-    private $user;
-
-    public function __construct()
-    {
-        $this->user = new User();    
-    }
-
+class RegisterController extends Controller {
     public function signup()
     {
         if($this->user->findUserByEmail($_POST['email'])) {

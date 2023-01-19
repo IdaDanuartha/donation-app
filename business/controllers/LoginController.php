@@ -1,21 +1,14 @@
 <?php
 require_once 'Controller.php';
-require_once realpath(dirname(__FILE__) . '/../models/User.php');
+require_once realpath(dirname(__FILE__) . '/../../middlewares/AuthMiddleware.php');
 
-class LoginController {
-    private $user;
-
-    public function __construct()
-    {
-        $this->user = new User();    
-    }
-
+class LoginController extends Controller {
     public function login()
     {
         if($this->user->findUserByEmail($_POST['email'])) {
             $loginUser = $this->user->login($_POST);
             if($loginUser) {
-                header('Location: ../admin/dashboard.php');
+                header('Location: ../dashboard/index.php');
             } else {
                 // Flasher::setFlash("Email or Password incorrect", "danger");
                 header('Location: login.php');

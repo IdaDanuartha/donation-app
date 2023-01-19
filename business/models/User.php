@@ -52,10 +52,20 @@ class User extends Model {
 
         if(password_verify($data['password'], $hashedPass)) {
             $_SESSION['user_session'] = $data['id'];
+            $_SESSION['login'] = true;
             return $row;
         } else {
             return false;
         }
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        unset($_SESSION['user_session']);
+        unset($_SESSION['login']);
+
+        return true;
     }
     
 }
