@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    $('.delete-review-btn').click(function(e) {
-        $('#id_review').val($('.delete-review-btn').val())
+document.querySelectorAll('.delete-btn').forEach(item => {
+    item.addEventListener('click', event => {
+        $('#data_id').val(item.value)
     })
 })

@@ -1,20 +1,20 @@
 <?php
 require_once 'Controller.php';
 require_once realpath(dirname(__FILE__) . '/../models/User.php');
-require_once realpath(dirname(__FILE__) . '/../models/Review.php');
+require_once realpath(dirname(__FILE__) . '/../models/Feedback.php');
 require_once realpath(dirname(__FILE__) . '/../core/Flasher.php');
-require_once realpath(dirname(__FILE__) . '/../../middlewares/ReviewMiddleware.php');
+require_once realpath(dirname(__FILE__) . '/../../middlewares/FeedbackMiddleware.php');
 
 class FeedbackController extends Controller {
     private $user;
-    private $review;
-    private $reviewMiddleware;
+    private $feedback;
+    private $feedbackMiddleware;
 
     public function __construct()
     {
         $this->user = new User();
-        $this->review = new Review();
-        $this->reviewMiddleware = new ReviewMiddleware();
+        $this->feedback = new Feedback();
+        $this->feedbackMiddleware = new FeedbackMiddleware();
     }
 
     public function logout()
@@ -24,50 +24,50 @@ class FeedbackController extends Controller {
         }
     }
 
-    public function getReviews()
+    public function getFeedbacks()
     {
-        return $this->review->getReviews(isset($_GET['keyword']) ? $_GET['keyword'] : '');
+        return $this->feedback->getFeedbacks(isset($_GET['keyword']) ? $_GET['keyword'] : '');
     }
 
-    public function getReview($id)
+    public function getFeedback($id)
     {
-        return $this->review->getReview($id);
+        return $this->feedback->getFeedback($id);
     }
 
     public function store()
     {
-        $rules = $this->reviewMiddleware->reviewRules($_POST['name'], $_POST['subject'], $_POST['message']);
+        $rules = $this->feedbackMiddleware->feedbackRules($_POST['name'], $_POST['subject'], $_POST['message']);
 
         if($rules) {
-            if($this->review->store($_POST) > 0) {
-                Flasher::setFlash("Review created successfully", "success");
+            if($this->feedback->store($_POST) > 0) {
+                Flasher::setFlash("Feedback created successfully", "success");
                 header('Location: index.php');            
             } else {
-                Flasher::setFlash("Review created failed", "danger");
+                Flasher::setFlash("Feedback created failed", "danger");
             }
         }
     }
 
     public function update($id)
     {
-        $rules = $this->reviewMiddleware->reviewRules($_POST['name'], $_POST['subject'], $_POST['message']);
+        $rules = $this->feedbackMiddleware->feedbackRules($_POST['name'], $_POST['subject'], $_POST['message']);
 
         if($rules) {
-            if($this->review->update($_POST, $id) > 0) {
-                Flasher::setFlash("Review updated successfully", "success");            
+            if($this->feedback->update($_POST, $id) > 0) {
+                Flasher::setFlash("Feedback updated successfully", "success");            
                 header('Location: index.php');     
             } else {
-                Flasher::setFlash("Review updated failed", "danger");
+                Flasher::setFlash("Feedback updated failed", "danger");
             }
         }
     }
 
     public function destroy()
     {
-        if($this->review->destroy($_POST['id']) > 0) {
-            Flasher::setFlash("Review deleted successfully", "success");            
+        if($this->feedback->destroy($_POST['id']) > 0) {
+            Flasher::setFlash("Feedback deleted successfully", "success");            
         } else {
-            Flasher::setFlash("Review deleted failed", "danger");
+            Flasher::setFlash("Feedback deleted failed", "danger");
         }
     }
 }

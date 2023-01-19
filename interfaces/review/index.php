@@ -221,7 +221,7 @@ if(isset($_POST['delete'])) {
                                         <td><?= $review['subject'] ?></td>
                                         <td class="">
                                             <a href="edit.php?id=<?= $review['id'] ?>" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></a>
-                                            <button data-bs-toggle="modal" data-bs-target="#deleteReviewModal" value="<?= $review['id'] ?>" class="btn btn-sm btn-danger border-0 delete-review-btn"><i class="fa fa-trash"></i></button>
+                                            <button data-bs-toggle="modal" data-bs-target="#deleteReviewModal" value="<?= $review['id'] ?>" class="btn btn-sm btn-danger border-0 delete-btn"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -247,7 +247,7 @@ if(isset($_POST['delete'])) {
                 Are you sure you want to delete this review? this process cannot be undone.
             </div>
             <form class="d-flex justify-content-center mt-4" action="" method="post">
-                <input type="hidden" name="id" id="id_review">
+                <input type="hidden" name="id" id="data_id">
                 <button type="button" class="btn btn-primary me-3" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-danger" name="delete">Delete</button>
             </form>
