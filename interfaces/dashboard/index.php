@@ -102,13 +102,7 @@ if(isset($_POST['logout'])) {
                     <a href="../review/index.php" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                class="bi bi-speedometer2 icon icon-xs me-2" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z" />
-                                <path fill-rule="evenodd"
-                                    d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z" />
-                            </svg>
+                            <img src="../assets/img/review.svg" width="20" alt="">
                         </span>
                         <span class="sidebar-text">Review</span>
                     </span>
@@ -119,13 +113,7 @@ if(isset($_POST['logout'])) {
                     <a href="../feedback/index.php" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                class="bi bi-speedometer2 icon icon-xs me-2" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z" />
-                                <path fill-rule="evenodd"
-                                    d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z" />
-                            </svg>
+                            <img src="../assets/img/feedback.svg" width="20" alt="">
                         </span>
                         <span class="sidebar-text">Feedback</span>
                     </span>
@@ -139,13 +127,7 @@ if(isset($_POST['logout'])) {
                         <a href="" class="nav-link d-flex justify-content-between">
                         <span>
                             <span class="sidebar-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                    class="bi bi-speedometer2 icon icon-xs me-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z" />
-                                    <path fill-rule="evenodd"
-                                        d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z" />
-                                </svg>
+                                <i class="fa-solid fa-arrow-right-from-bracket" style="color: #aaa;"></i>
                             </span>
                             <button type="submit" name="logout" class="bg-transparent border-0 text-white sidebar-text">Sign out</button>
                         </span>
@@ -166,24 +148,65 @@ if(isset($_POST['logout'])) {
                     <div class="d-flex align-items-center">
                         <h3>Dashboard Page</h3>
                     </div>
-                    <!-- <ul class="navbar-nav align-items-center">
-                        <li class="nav-item dropdown ms-lg-3">
-                            <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <div class="media d-flex align-items-center">
-                                    <img class="avatar rounded-circle" alt="Image placeholder" src="https://ui-avatars.com/api/?name=as&amp;background=4e73df&amp;color=ffffff&amp;size=100">
-                                    <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                                        <span class="mb-0 font-small fw-bold text-gray-900">
-                                            
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul> -->
                 </div>
             </div>
-            </nav>
+        </nav>
+
+        <div class="container-fluid mb-5 mt-5">
+        <div class="row">
+
+            <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <div class="row d-block d-xl-flex align-items-center">
+                            <div
+                                class="col-12 col-xl-4 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                                <div class="icon-shape icon-shape-info rounded me-4 me-sm-0">
+                                    <img src="../assets/img/reviewDashboard.svg" width="35" alt="">
+                                </div>
+                                <div class="d-sm-none">
+                                    <h2 class="h5">Total Reviews</h2>
+                                    <h3 class="fw-extrabold mb-1"><?= $dashboard->getReviewCount() ?></h3>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-8 px-xl-0">
+                                <div class="d-none d-sm-block">
+                                    <h2 class="h5">Total Reviews</h2>
+                                    <h3 class="fw-extrabold mb-1"><?= $dashboard->getReviewCount() ?></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <div class="row d-block d-xl-flex align-items-center">
+                            <div
+                                class="col-12 col-xl-4 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                                <div class="icon-shape icon-shape-success rounded me-4 me-sm-0">
+                                <img src="../assets/img/feedbackDashboard.svg" width="35" alt="">
+                                </div>
+                                <div class="d-sm-none">
+                                    <h2 class="h5">Total Feedbacks</h2>
+                                    <h3 class="fw-extrabold mb-1"><?= $dashboard->getFeedbackCount() ?></h3>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-8 px-xl-0">
+                                <div class="d-none d-sm-block">
+                                    <h2 class="h5">Total Feedbacks</h2>
+                                    <h3 class="fw-extrabold mb-1"><?= $dashboard->getFeedbackCount() ?></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     </main>
 

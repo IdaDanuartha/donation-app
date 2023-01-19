@@ -91,7 +91,7 @@ if(isset($_POST['submit'])) {
             </div>
 
             <div class="mt-2 mb-4">
-              <span style="font-size: 14px;">Doesn't have an account? <a href="signup.php" class="text-underline"><u>Create new account!</u></a></span>
+              <span style="font-size: 14px;">Doesn't have an account? <a href="signup.php" class="text-underline"><u>Signup now!</u></a></span>
             </div>
 
             <div class="d-grid">
