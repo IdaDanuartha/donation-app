@@ -14,7 +14,6 @@ class DashboardController extends Controller {
     public function getUserLogin()
     {
         var_dump($this->user->findUserById());
-        die;
     }
     
     public function logout()

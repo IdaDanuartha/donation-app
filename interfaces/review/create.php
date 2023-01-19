@@ -1,15 +1,19 @@
 <?php
 session_start();
-require_once "../../business/controllers/DashboardController.php";
+require_once "../../business/controllers/ReviewController.php";
 
-$dashboard = new DashboardController();
+$review = new ReviewController();
 
-if(!$dashboard->session()) {
+if(!$review->session()) {
   header('Location: ../auth/login.php');
 }
 
 if(isset($_POST['logout'])) {
-    $dashboard->logout();
+    $review->logout();
+}
+
+if(isset($_POST['store'])) {
+  $review->store();
 }
 
 ?>
@@ -98,8 +102,8 @@ if(isset($_POST['logout'])) {
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="../review/index.php" class="nav-link d-flex justify-content-between">
+                <li class="nav-item active">
+                    <a href="index.php" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
@@ -115,8 +119,8 @@ if(isset($_POST['logout'])) {
                     </a>
                 </li>
 
-                <li class="nav-item active">
-                    <a href="index.php" class="nav-link d-flex justify-content-between">
+                <li class="nav-item">
+                    <a href="../feedback/index.php" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
@@ -163,12 +167,42 @@ if(isset($_POST['logout'])) {
         <nav class="navbar navbar-top navbar-expand navbar-dashboard navbar-dark ps-0 pe-2 pb-0">
             <div class="container-fluid px-0">
                 <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
-                    <div class="d-flex align-items-center">
-                        <h3>Feedback Page</h3>
-                    </div>
+                  <div class="d-flex align-items-center">
+                      <h3>Add Review Page</h3>
+                  </div>
                 </div>
             </div>
             </nav>
+
+    <!-- Content -->
+    <div class="container-fluid mb-5 mt-5">
+      <div class="row">
+        <div class="col-md-12">
+          <a href="index.php" class="btn btn-md btn-primary border-0 shadow mb-3" type="button"><i class="fa fa-long-arrow-alt-left me-2"></i> Back</a>
+          <div class="card border-0 shadow">
+            <div class="card-body">
+              <h5><i class="fa fa-clone"></i> Add New Review</h5>
+              <hr>
+              <form action="" method="post">
+                <div class="mb-4">
+                    <label for="name">Name</label> 
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Input reviewer name">                    
+                </div>
+                <div class="mb-4">
+                    <label for="subject">Subject</label> 
+                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Input subject review">                    
+                </div> 
+                <div class="mb-4">
+                    <label for="message">Message</label> 
+                    <textarea type="text" name="message" id="message" class="form-control" placeholder="Input message review" rows="6"></textarea>                    
+                </div>                
+                <button type="submit" name="store" class="btn btn-md btn-primary border-0 shadow me-2">Add Review</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     </main>
 

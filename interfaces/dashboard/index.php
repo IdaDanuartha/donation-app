@@ -164,9 +164,9 @@ if(isset($_POST['logout'])) {
             <div class="container-fluid px-0">
                 <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
                     <div class="d-flex align-items-center">
+                        <h3>Dashboard Page</h3>
                     </div>
-                    <!-- Navbar links -->
-                    <ul class="navbar-nav align-items-center">
+                    <!-- <ul class="navbar-nav align-items-center">
                         <li class="nav-item dropdown ms-lg-3">
                             <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -180,7 +180,7 @@ if(isset($_POST['logout'])) {
                                 </div>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
             </nav>

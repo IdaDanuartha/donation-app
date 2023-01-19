@@ -1,15 +1,23 @@
 <?php
 session_start();
-require_once "../../business/controllers/DashboardController.php";
+require_once "../../business/controllers/ReviewController.php";
 
-$dashboard = new DashboardController();
+$review = new ReviewController();
 
-if(!$dashboard->session()) {
+if(!$review->session()) {
   header('Location: ../auth/login.php');
 }
 
+if(isset($_GET['keyword'])) {
+    $review->getReviews();
+}
+
 if(isset($_POST['logout'])) {
-    $dashboard->logout();
+    $review->logout();
+}
+
+if(isset($_POST['delete'])) {
+    $review->destroy();
 }
 
 ?>
@@ -164,39 +172,24 @@ if(isset($_POST['logout'])) {
             <div class="container-fluid px-0">
                 <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
                     <div class="d-flex align-items-center">
+                        <h3>Review Page</h3>
                     </div>
-                    <!-- Navbar links -->
-                    <ul class="navbar-nav align-items-center">
-                        <li class="nav-item dropdown ms-lg-3">
-                            <a class="nav-link dropdown-toggle pt-1 px-0" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <div class="media d-flex align-items-center">
-                                    <img class="avatar rounded-circle" alt="Image placeholder" src="https://ui-avatars.com/api/?name=as&amp;background=4e73df&amp;color=ffffff&amp;size=100">
-                                    <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                                        <span class="mb-0 font-small fw-bold text-gray-900">
-                                            
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </div>
             </nav>
 
             <!-- Content -->
-            <div class="container-fluid mb-5 mt-5">
+        <div class="container-fluid mb-5 mt-5">
         <div class="d-flex justify-content-between mb-2">
             <div class="">
-                <button class="btn btn-md btn-primary border-0 shadow w-100 py-3 px-4" type="button"><i
+                <a href="create.php" class="btn btn-md btn-primary border-0 shadow w-100 py-3 px-4" type="button"><i
                     class="fa fa-plus-circle"></i>
-                Tambah</button>
+                Add Review</a>
             </div>
             <div class="">
-                <form>
+                <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control border-0 shadow py-3 px-4" name="query" placeholder="Search review...">
+                        <input type="text" class="form-control border-0 shadow py-3 px-4" name="keyword" placeholder="Search review...">
                         <span class="input-group-text border-0 shadow">
                             <i class="fa fa-search"></i>
                         </span>
@@ -221,15 +214,17 @@ if(isset($_POST['logout'])) {
                                 </thead>
                                 <div class="mt-2"></div>
                                 <tbody>
-                                    <tr v-for="(classroom, index) in classrooms.data" :key="index">
-                                        <td class="fw-bold text-center">1</td>
-                                        <td>Danuartha</td>
-                                        <td>Judul</td>
+                                    <?php foreach($review->getReviews() as $index => $review) : ?>
+                                    <tr>
+                                        <td class="fw-bold text-center"><?= ++$index ?></td>
+                                        <td><?= $review['name'] ?></td>
+                                        <td><?= $review['subject'] ?></td>
                                         <td class="">
-                                            <button class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></button>
-                                            <button class="btn btn-sm btn-danger border-0"><i class="fa fa-trash"></i></button>
+                                            <a href="edit.php?id=<?= $review['id'] ?>" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></a>
+                                            <button data-bs-toggle="modal" data-bs-target="#deleteReviewModal" value="<?= $review['id'] ?>" class="btn btn-sm btn-danger border-0 delete-review-btn"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -242,7 +237,29 @@ if(isset($_POST['logout'])) {
 
     </main>
 
+    <!-- Modal -->
+    <div class="modal fade" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteReviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-body">
+            <h1 class="modal-title fs-5 text-center" id="deleteReviewModalLabel">Delete Review</h1>
+            <div id="delete-box">
+                Are you sure you want to delete this review? this process cannot be undone.
+            </div>
+            <form class="d-flex justify-content-center mt-4" action="" method="post">
+                <input type="hidden" name="id" id="id_review">
+                <button type="button" class="btn btn-primary me-3" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="../assets/js/volt.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 </html>

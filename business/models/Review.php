@@ -1,7 +1,7 @@
 <?php
 require_once "Model.php";
 
-class Reviews extends Model {
+class Review extends Model {
     private $table = 'reviews',
             $db;
 
@@ -9,70 +9,70 @@ class Reviews extends Model {
         $this->db = new Model();
     }
 
-    public function findUserById()
+    public function getReviews($keyword)
     {
-        $this->db->query("SELECT * FROM {$this->table} WHERE id = :id");
-        $this->db->bind('id', 1);
-        $row = $this->db->single();
+        $query = "SELECT * FROM {$this->table} WHERE name LIKE :keyword";
+        $this->db->query($query);
+        $this->db->bind("keyword", "%$keyword%");
 
-        if($this->db->rowCount() > 0) {
-            return $row;
-        } else {
-            return false;
-        }
+        return $this->db->all();
     }
 
-    public function createUser($data)
+    public function getReview($id)
     {
-        $hash = password_hash($data['password'], PASSWORD_DEFAULT);
+        $query = "SELECT * FROM {$this->table} WHERE id=:id";
 
-        $this->db->query("INSERT INTO {$this->table} (name, email, password) VALUES (:name, :email, :password)");
+        $this->db->query($query);
+        $this->db->bind('id', $id);
 
+        return $this->db->single();
+    }
+
+    public function store($data) {
+        $query = "INSERT INTO {$this->table}
+                    VALUES
+                (null, :name, :subject, :message, :created_at, :updated_at)";
+
+        $this->db->query($query);
         $this->db->bind('name', $data['name']);
-        $this->db->bind('email', $data['email']);
-        $this->db->bind('password', $hash);
+        $this->db->bind('subject', $data['subject']);
+        $this->db->bind('message', $data['message']);
+        $this->db->bind('created_at', date('Y-m-d H:i:s'));
+        $this->db->bind('updated_at', date('Y-m-d H:i:s'));
 
         $this->db->execute();
+        
         return $this->db->rowCount();
     }
 
-    public function findUserByEmail($email)
-    {
-        $this->db->query("SELECT * FROM {$this->table} WHERE email = :email");
-        $this->db->bind('email', $email);
-        $row = $this->db->single();
+    public function update($data, $id) {
 
-        if($this->db->rowCount() > 0) {
-            return $row;
-        } else {
-            return false;
-        }
-    }
+        $query = "UPDATE {$this->table} SET
+                name = :name,
+                subject = :subject,                
+                message = :message,
+                updated_at = :updated_at
+              WHERE id = $id";
 
-    public function login($data)
-    {
-        $userEmail = $data['email'];
-        $row = $this->findUserByEmail($userEmail);
-        if($row == false) return false;
+        $this->db->query($query);
+        $this->db->bind('name', $data['name']);
+        $this->db->bind('subject', $data['subject']);
+        $this->db->bind('message', $data['message']);
+        $this->db->bind('updated_at', date('Y-m-d H:i:s'));
 
-        $hashedPass = $row['password'];
+        $this->db->execute();
 
-        if(password_verify($data['password'], $hashedPass)) {
-            $_SESSION['user_session'] = $data['id'];
-            $_SESSION['login'] = true;
-            return $row;
-        } else {
-            return false;
-        }
-    }
+        return $this->db->rowCount();
+    } 
 
-    public function logout()
-    {
-        session_destroy();
-        unset($_SESSION['user_session']);
-        unset($_SESSION['login']);
+    public function destroy($id) {
+        $query = "DELETE FROM {$this->table} WHERE id = :id";
 
-        return true;
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
     }
     
 }
