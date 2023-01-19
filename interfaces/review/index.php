@@ -81,8 +81,8 @@ if(isset($_POST['logout'])) {
 
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
 
-                <li class="nav-item active">
-                    <a href="index.php" class="nav-link d-flex justify-content-between">
+                <li class="nav-item">
+                    <a href="../dashboard/index.php" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
@@ -98,8 +98,8 @@ if(isset($_POST['logout'])) {
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="../review/index.php" class="nav-link d-flex justify-content-between">
+                <li class="nav-item active">
+                    <a href="index.php" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
@@ -184,6 +184,61 @@ if(isset($_POST['logout'])) {
                 </div>
             </div>
             </nav>
+
+            <!-- Content -->
+            <div class="container-fluid mb-5 mt-5">
+        <div class="d-flex justify-content-between mb-2">
+            <div class="">
+                <button class="btn btn-md btn-primary border-0 shadow w-100 py-3 px-4" type="button"><i
+                    class="fa fa-plus-circle"></i>
+                Tambah</button>
+            </div>
+            <div class="">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control border-0 shadow py-3 px-4" name="query" placeholder="Search review...">
+                        <span class="input-group-text border-0 shadow">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-md-12">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
+                                <thead class="thead-dark">
+                                    <tr class="border-0">
+                                        <th class="border-0 rounded-start" style="width:5%">No.</th>
+                                        <th class="border-0">Name</th>
+                                        <th class="border-0">Subject</th>
+                                        <th class="border-0 rounded-end" style="width:15%">Action</th>
+                                    </tr>
+                                </thead>
+                                <div class="mt-2"></div>
+                                <tbody>
+                                    <tr v-for="(classroom, index) in classrooms.data" :key="index">
+                                        <td class="fw-bold text-center">1</td>
+                                        <td>Danuartha</td>
+                                        <td>Judul</td>
+                                        <td class="">
+                                            <button class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></button>
+                                            <button class="btn btn-sm btn-danger border-0"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- <Pagination :links="classrooms.links" align="end" /> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     </main>
 

@@ -11,6 +11,7 @@ if($login->session()) {
 if(isset($_POST['submit'])) {
     $login->login();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -42,12 +43,9 @@ if(isset($_POST['submit'])) {
           "
         >
         <h4 class="text-center">Login Page</h4>
-          <!-- <div v-if="errors.message" class="alert alert-danger mt-2">
-            {{ errors.message }}
-          </div>
-          <div v-if="$page.props.session.error" class="alert alert-danger mt-2" :class="$page.props.session.error != '' ? '':'d-none'">
-            {{ $page.props.session.error.login }}
-          </div> -->
+        <div class="mt-3">
+          <?php Flasher::flash() ?>          
+        </div>
           <form action="" method="post" class="mt-4">
             <div class="form-group mb-4">
               <label for="email">Email</label>
@@ -60,15 +58,18 @@ if(isset($_POST['submit'])) {
                   class="form-control"
                   placeholder="Email"
                   name="email"
+                  value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>"
                 />
               </div>
-              <div v-if="errors.email" class="alert alert-danger mt-2">
-                {{ errors.email }}
-              </div>
+              <?php if(isset($_SESSION['error']['email'])) : ?>
+                <div class="alert alert-danger mt-2">
+                  <?= $_SESSION['error']['email'] ?>
+                </div>
+              <?php endif; ?>
             </div>
 
             <div class="form-group">
-              <div class="form-group mb-4">
+              <div class="form-group">
                 <label for="password">Password</label>
                 <div class="input-group">
                   <span class="input-group-text" id="basic-addon2">
@@ -81,10 +82,16 @@ if(isset($_POST['submit'])) {
                     name="password"
                   />
                 </div>
-                <div v-if="errors.password" class="alert alert-danger mt-2">
-                  {{ errors.password }}
+                <?php if(isset($_SESSION['error']['password'])) : ?>
+                <div class="alert alert-danger mt-2">
+                  <?= $_SESSION['error']['password'] ?>
                 </div>
+              <?php endif; ?>
               </div>
+            </div>
+
+            <div class="mt-2 mb-4">
+              <span style="font-size: 14px;">Doesn't have an account? <a href="signup.php" class="text-underline"><u>Create new account!</u></a></span>
             </div>
 
             <div class="d-grid">

@@ -1,8 +1,8 @@
 <?php
 require_once "Model.php";
 
-class User extends Model {
-    private $table = 'users',
+class Reviews extends Model {
+    private $table = 'reviews',
             $db;
 
     public function __construct() {

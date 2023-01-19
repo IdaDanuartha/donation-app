@@ -81,8 +81,8 @@ if(isset($_POST['logout'])) {
 
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
 
-                <li class="nav-item active">
-                    <a href="index.php" class="nav-link d-flex justify-content-between">
+                <li class="nav-item">
+                    <a href="../dashboard/index.php" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
@@ -115,8 +115,8 @@ if(isset($_POST['logout'])) {
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="../feedback/index.php" class="nav-link d-flex justify-content-between">
+                <li class="nav-item active">
+                    <a href="index.php" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"

@@ -42,12 +42,9 @@ if(isset($_POST['submit'])) {
           "
         >
         <h4 class="text-center">Signup Page</h4>
-          <!-- <div v-if="errors.message" class="alert alert-danger mt-2">
-            {{ errors.message }}
+          <div class="mt-3">
+            <?php Flasher::flash() ?>
           </div>
-          <div v-if="$page.props.session.error" class="alert alert-danger mt-2" :class="$page.props.session.error != '' ? '':'d-none'">
-            {{ $page.props.session.error.login }}
-          </div> -->
           <form action="" method="post" class="mt-4">
           <div class="form-group mb-4">
               <label for="name">Name</label>
@@ -60,11 +57,14 @@ if(isset($_POST['submit'])) {
                   class="form-control"
                   placeholder="name"
                   name="name"
+                  value="<?= isset($_POST['name']) ? $_POST['name'] : '' ?>"
                 />
               </div>
-              <div v-if="errors.email" class="alert alert-danger mt-2">
-                {{ errors.email }}
-              </div>
+              <?php if(isset($_SESSION['error']['name'])) : ?>
+                <div class="alert alert-danger mt-2">
+                  <?= $_SESSION['error']['name'] ?>
+                </div>
+              <?php endif; ?>
             </div>
             <div class="form-group mb-4">
               <label for="email">Email</label>
@@ -77,11 +77,14 @@ if(isset($_POST['submit'])) {
                   class="form-control"
                   placeholder="Email"
                   name="email"
+                  value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>"
                 />
               </div>
-              <div v-if="errors.email" class="alert alert-danger mt-2">
-                {{ errors.email }}
-              </div>
+              <?php if(isset($_SESSION['error']['email'])) : ?>
+                <div class="alert alert-danger mt-2">
+                  <?= $_SESSION['error']['email'] ?>
+                </div>
+              <?php endif; ?>
             </div>
 
             <div class="form-group">
@@ -98,10 +101,33 @@ if(isset($_POST['submit'])) {
                     name="password"
                   />
                 </div>
-                <div v-if="errors.password" class="alert alert-danger mt-2">
-                  {{ errors.password }}
+                <?php if(isset($_SESSION['error']['password'])) : ?>
+                <div class="alert alert-danger mt-2">
+                  <?= $_SESSION['error']['password'] ?>
+                </div>
+              <?php endif; ?>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon2">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                  <input
+                    type="password"
+                    placeholder="Confirm password"
+                    class="form-control"
+                    name="confirm_password"
+                  />
                 </div>
               </div>
+            </div>
+
+            <div class="mt-2 mb-4">
+              <span style="font-size: 14px;">Already have an account? <a href="login.php" class="text-underline"><u>Login now!</u></a></span>
             </div>
 
             <div class="d-grid">
