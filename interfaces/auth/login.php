@@ -33,7 +33,7 @@ if(isset($_POST['submit'])) {
         <div
           class="
             bg-white
-            shadow
+            shadow-lg
             border-0
             rounded
             border-light

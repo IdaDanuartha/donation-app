@@ -69,16 +69,12 @@ if(isset($_POST['store'])) {
                 <li class="nav-item">
                     <span class="mt-2 d-flex justify-content-between">
                         <span>
-                            <span class="sidebar-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                    class="bi bi-mortarboard-fill icon icon-xs me-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z" />
-                                    <path
-                                        d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z" />
-                                </svg>
+                            <span>
+                                <span class="sidebar-icon">
+                                    <i class="fa-solid fa-circle-dollar-to-slot me-2 fa-lg"></i>
+                                </span>
+                                <span class="sidebar-text fw-bold">E-Donate</span>
                             </span>
-                            <span class="sidebar-text fw-bold">Donation</span>
                         </span>
                     </span>
                 </li>
@@ -177,7 +173,7 @@ if(isset($_POST['store'])) {
                 </div>
                 <div class="mb-4">
                     <label for="subject">Subject</label> 
-                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Input subject review" value="<?= isset($_POST['subject']) ? $_POST['subject'] : '' ?>">  
+                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Input subject feedback" value="<?= isset($_POST['subject']) ? $_POST['subject'] : '' ?>">  
                     <?php if(isset($_SESSION['error']['subject'])) : ?>
                         <div class="alert alert-danger mt-2">
                             <?= $_SESSION['error']['subject'] ?>
@@ -186,14 +182,14 @@ if(isset($_POST['store'])) {
                 </div> 
                 <div class="mb-4">
                     <label for="message">Message</label> 
-                    <textarea type="text" name="message" id="message" class="form-control" placeholder="Input message review" rows="6"><?= isset($_POST['message']) ? $_POST['message'] : '' ?></textarea>                    
+                    <textarea type="text" name="message" id="message" class="form-control" placeholder="Input message feedback" rows="6"><?= isset($_POST['message']) ? $_POST['message'] : '' ?></textarea>                    
                     <?php if(isset($_SESSION['error']['message'])) : ?>
                         <div class="alert alert-danger mt-2">
                             <?= $_SESSION['error']['message'] ?>
                         </div>
                     <?php endif; ?>
                 </div>                
-                <button type="submit" name="store" class="btn btn-md btn-primary border-0 shadow me-2">Add Review</button>
+                <button type="submit" name="store" class="btn btn-md btn-primary border-0 shadow me-2">Add Feedback</button>
               </form>
             </div>
           </div>

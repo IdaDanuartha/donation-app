@@ -66,15 +66,9 @@ if(isset($_POST['logout'])) {
                     <span class="mt-2 d-flex justify-content-between">
                         <span>
                             <span class="sidebar-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                    class="bi bi-mortarboard-fill icon icon-xs me-2" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z" />
-                                    <path
-                                        d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z" />
-                                </svg>
+                                <i class="fa-solid fa-circle-dollar-to-slot me-2 fa-lg"></i>
                             </span>
-                            <span class="sidebar-text fw-bold">Donation</span>
+                            <span class="sidebar-text fw-bold">E-Donate</span>
                         </span>
                     </span>
                 </li>
@@ -198,6 +192,31 @@ if(isset($_POST['logout'])) {
                                 <div class="d-none d-sm-block">
                                     <h2 class="h5">Total Feedbacks</h2>
                                     <h3 class="fw-extrabold mb-1"><?= $dashboard->getFeedbackCount() ?></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl-4 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <div class="row d-block d-xl-flex align-items-center">
+                            <div
+                                class="col-12 col-xl-4 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                                <div class="icon-shape icon-shape-danger rounded me-4 me-sm-0">
+                                    <div><i class="fa-solid fa-users fa-xl"></i></div>
+                                </div>
+                                <div class="d-sm-none">
+                                    <h2 class="h5">Total Users</h2>
+                                    <h3 class="fw-extrabold mb-1"><?= $dashboard->getFeedbackCount() ?></h3>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-8 px-xl-0">
+                                <div class="d-none d-sm-block">
+                                    <h2 class="h5">Total Users</h2>
+                                    <h3 class="fw-extrabold mb-1"><?= $dashboard->getUserCount() ?></h3>
                                 </div>
                             </div>
                         </div>

@@ -26,6 +26,11 @@ class DashboardController extends Controller {
         return count($this->feedback->getFeedbacks(''));
     }
     
+    public function getUserCount()
+    {
+        return count($this->user->getUsers());
+    }
+    
     public function logout()
     {
         if($this->user->logout()) {

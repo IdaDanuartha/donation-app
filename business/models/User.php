@@ -9,6 +9,14 @@ class User extends Model {
         $this->db = new Model();
     }
 
+    public function getUsers()
+    {
+        $query = "SELECT * FROM {$this->table}";
+        $this->db->query($query);
+
+        return $this->db->all();
+    }
+
     public function findUserById()
     {
         $this->db->query("SELECT * FROM {$this->table} WHERE id = :id");
