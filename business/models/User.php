@@ -49,8 +49,8 @@ class User extends Model {
         $this->db->bind('email', $data['email']);
         $this->db->bind('password', $hash);
         $this->db->bind('level', $data['level']);
-        $this->db->bind('created_at', $data['created_at']);
-        $this->db->bind('updated_at', $data['updated_at']);
+        $this->db->bind('created_at', date('Y-m-d H:i:s'));
+        $this->db->bind('updated_at', date('Y-m-d H:i:s'));
 
         $this->db->execute();
         return $this->db->rowCount();
