@@ -19,11 +19,14 @@ class LoginController extends Controller {
         $rules = $this->auth->loginRules($_POST['email'], $_POST['password']);
 
         if($rules) {
-            if($this->user->findUserByEmail($_POST['email'])) {
+            $user = $this->user->findUserByEmail($_POST['email']);
+            if($user) {
                 $loginUser = $this->user->login($_POST);
-                if($loginUser) {
+                if($loginUser && $user['level'] === 'alumni associations') {
                     header('Location: ../dashboard/index.php');
-                } else {
+                } else if($loginUser && $user['level'] !== 'alumni associations') {
+                    header('Location: ../feedback/index.php');
+                }   else {
                     Flasher::setFlash("Login failed! Email or password incorrect", "danger");
                 }
             } else {

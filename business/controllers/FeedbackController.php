@@ -11,7 +11,7 @@ class FeedbackController extends Controller {
     private $feedbackMiddleware;
 
     public function __construct()
-    {
+    {        
         $this->user = new User();
         $this->feedback = new Feedback();
         $this->feedbackMiddleware = new FeedbackMiddleware();

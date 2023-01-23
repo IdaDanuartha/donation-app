@@ -17,6 +17,15 @@ class User extends Model {
         return $this->db->all();
     }
 
+    public function getUsersExceptAdmin($keyword)
+    {
+        $query = "SELECT * FROM {$this->table} WHERE level != 'alumni associations' AND username LIKE :keyword ORDER BY created_at DESC";
+        $this->db->query($query);
+        $this->db->bind("keyword", "%$keyword%");
+
+        return $this->db->all();
+    }
+
     public function findUserById()
     {
         $this->db->query("SELECT * FROM {$this->table} WHERE id = :id");
@@ -34,12 +43,14 @@ class User extends Model {
     {
         $hash = password_hash($data['password'], PASSWORD_DEFAULT);
 
-        $this->db->query("INSERT INTO {$this->table} (username, email, password, level) VALUES (:username, :email, :password, :level)");
+        $this->db->query("INSERT INTO {$this->table} (username, email, password, level, created_at, updated_at) VALUES (:username, :email, :password, :level, :created_at, :updated_at)");
 
         $this->db->bind('username', $data['username']);
         $this->db->bind('email', $data['email']);
         $this->db->bind('password', $hash);
         $this->db->bind('level', $data['level']);
+        $this->db->bind('created_at', $data['created_at']);
+        $this->db->bind('updated_at', $data['updated_at']);
 
         $this->db->execute();
         return $this->db->rowCount();

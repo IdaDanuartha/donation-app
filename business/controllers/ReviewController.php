@@ -12,6 +12,7 @@ class ReviewController extends Controller {
 
     public function __construct()
     {
+        parent::__construct();
         $this->user = new User();
         $this->review = new Review();
         $this->reviewMiddleware = new ReviewMiddleware();

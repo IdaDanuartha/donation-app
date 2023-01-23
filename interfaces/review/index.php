@@ -109,7 +109,7 @@ if(isset($_POST['delete'])) {
                             <span class="sidebar-icon">
                                 <img src="../assets/img/review.svg" width="20" alt="">
                             </span>
-                            <span class="sidebar-text">Review</span>
+                            <span class="sidebar-text">Reviews</span>
                         </span>
                         </a>
                     </li>
@@ -121,10 +121,23 @@ if(isset($_POST['delete'])) {
                         <span class="sidebar-icon">
                             <img src="../assets/img/feedback.svg" width="20" alt="">
                         </span>
-                        <span class="sidebar-text">Feedback</span>
+                        <span class="sidebar-text">Feedbacks</span>
                     </span>
                     </a>
                 </li>   
+
+                <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
+                <li class="nav-item">
+                    <a href="../user/index.php" class="nav-link d-flex justify-content-between">
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </span>
+                        <span class="sidebar-text">Users</span>
+                    </span>
+                    </a>
+                </li>
+                <?php endif; ?>
                 
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
 
@@ -202,7 +215,12 @@ if(isset($_POST['delete'])) {
                                             <tr>
                                                 <td class="fw-bold text-center"><?= ++$index ?></td>
                                                 <td><?= $review['subject'] ?></td>
-                                                <td><?= $review['rating'] ?></td>
+                                                <td>
+                                                    <?php for($i = 0; $i < $review['rating']; $i++) : ?>
+                                                        <i class="fa-solid fa-star fa-md" style="color: #f90;"></i>
+                                                    <?php endfor; ?>
+                                                    <span>(<?= $review['rating'] ?>)</span>
+                                                </td>
                                                 <td class="">
                                                     <a href="edit.php?id=<?= $review['id'] ?>" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></a>
                                                     <button data-bs-toggle="modal" data-bs-target="#deleteReviewModal" value="<?= $review['id'] ?>" class="btn btn-sm btn-danger border-0 delete-btn"><i class="fa fa-trash"></i></button>

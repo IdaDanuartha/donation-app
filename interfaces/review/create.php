@@ -107,7 +107,7 @@ if(isset($_POST['store'])) {
                             <span class="sidebar-icon">
                                 <img src="../assets/img/review.svg" width="20" alt="">
                             </span>
-                            <span class="sidebar-text">Review</span>
+                            <span class="sidebar-text">Reviews</span>
                         </span>
                         </a>
                     </li>
@@ -119,10 +119,23 @@ if(isset($_POST['store'])) {
                         <span class="sidebar-icon">
                             <img src="../assets/img/feedback.svg" width="20" alt="">
                         </span>
-                        <span class="sidebar-text">Feedback</span>
+                        <span class="sidebar-text">Feedbacks</span>
                     </span>
                     </a>
                 </li>   
+
+                <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
+                <li class="nav-item">
+                    <a href="../user/index.php" class="nav-link d-flex justify-content-between">
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </span>
+                        <span class="sidebar-text">Users</span>
+                    </span>
+                    </a>
+                </li>
+                <?php endif; ?>
                 
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
 
@@ -179,15 +192,15 @@ if(isset($_POST['store'])) {
                     <label for="rating">Rating</label> 
                     <div class="star-rating">
                         <input type="radio" id="5-stars" name="rating" value="5" />
-                        <label for="5-stars" class="star">&#9733;</label>
+                        <label for="5-stars" class="star"><i class="fa-solid fa-star fa-xl"></i></label>
                         <input type="radio" id="4-stars" name="rating" value="4" />
-                        <label for="4-stars" class="star">&#9733;</label>
+                        <label for="4-stars" class="star"><i class="fa-solid fa-star fa-xl"></i></label>
                         <input type="radio" id="3-stars" name="rating" value="3" />
-                        <label for="3-stars" class="star">&#9733;</label>
+                        <label for="3-stars" class="star"><i class="fa-solid fa-star fa-xl"></i></label>
                         <input type="radio" id="2-stars" name="rating" value="2" />
-                        <label for="2-stars" class="star">&#9733;</label>
+                        <label for="2-stars" class="star"><i class="fa-solid fa-star fa-xl"></i></label>
                         <input type="radio" id="1-star" name="rating" value="1" />
-                        <label for="1-star" class="star">&#9733;</label>
+                        <label for="1-star" class="star"><i class="fa-solid fa-star fa-xl"></i></label>
                     </div>
                     <?php if(isset($_SESSION['error']['rating'])) : ?>
                         <div class="alert alert-danger mt-2">

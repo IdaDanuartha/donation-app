@@ -11,6 +11,7 @@ class DashboardController extends Controller {
 
     public function __construct()
     {
+        parent::__construct();
         $this->user = new User();
         $this->review = new Review();
         $this->feedback = new Feedback();
