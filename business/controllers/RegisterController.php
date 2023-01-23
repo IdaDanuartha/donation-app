@@ -15,7 +15,7 @@ class RegisterController extends Controller {
 
     public function signup()
     {
-        $rules = $this->auth->registerRules($_POST['name'], $_POST['email'], $_POST['password'], $_POST['confirm_password']);
+        $rules = $this->auth->registerRules($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confirm_password']);
 
         if($rules) {
             if($this->user->findUserByEmail($_POST['email'])) {

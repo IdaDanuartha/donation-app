@@ -71,10 +71,10 @@ if(isset($_POST['update'])) {
                     <span class="mt-2 d-flex justify-content-between">
                         <span>
                             <span>
-                                <!-- <span class="sidebar-icon">
+                                <span class="sidebar-icon">
                                 <i class="fa-solid fa-circle-dollar-to-slot me-2 fa-lg"></i>
-                            </span> -->
-                            <span class="sidebar-text fw-bold">Review & Feedback</span>
+                            </span>
+                            <span class="sidebar-text fw-bold">E-Donation</span>
                             </span>
                         </span>
                     </span>
@@ -87,7 +87,7 @@ if(isset($_POST['update'])) {
                     <span>
                         <span class="sidebar-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                class="bi bi-speedometer2 icon icon-xs me-2" viewBox="0 0 16 16">
+                                class="bi bi-speedometer2 icon icon-xs" viewBox="0 0 16 16">
                                 <path
                                     d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z" />
                                 <path fill-rule="evenodd"

@@ -36,7 +36,7 @@ class ReviewController extends Controller {
 
     public function store()
     {
-        $rules = $this->reviewMiddleware->reviewRules($_POST['name'], $_POST['subject'], $_POST['message']);
+        $rules = $this->reviewMiddleware->reviewRules($_POST['subject'], $_POST['critics'], $_POST['suggestion']);
 
         if($rules) {
             if($this->review->store($_POST) > 0) {
@@ -50,7 +50,7 @@ class ReviewController extends Controller {
 
     public function update($id)
     {
-        $rules = $this->reviewMiddleware->reviewRules($_POST['name'], $_POST['subject'], $_POST['message']);
+        $rules = $this->reviewMiddleware->reviewRules($_POST['subject'], $_POST['critics'], $_POST['suggestion']);
 
         if($rules) {
             if($this->review->update($_POST, $id) > 0) {

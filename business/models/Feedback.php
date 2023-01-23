@@ -31,12 +31,13 @@ class Feedback extends Model {
     public function store($data) {
         $query = "INSERT INTO {$this->table}
                     VALUES
-                (null, :name, :subject, :message, :created_at, :updated_at)";
+                (null, :user_id, :subject, :critics, :suggestion, :created_at, :updated_at)";
 
         $this->db->query($query);
-        $this->db->bind('name', $data['name']);
+        $this->db->bind('user_id', $_SESSION['user_session']);
         $this->db->bind('subject', $data['subject']);
-        $this->db->bind('message', $data['message']);
+        $this->db->bind('critics', $data['critics']);
+        $this->db->bind('suggestion', $data['suggestion']);
         $this->db->bind('created_at', date('Y-m-d H:i:s'));
         $this->db->bind('updated_at', date('Y-m-d H:i:s'));
 
@@ -48,16 +49,16 @@ class Feedback extends Model {
     public function update($data, $id) {
 
         $query = "UPDATE {$this->table} SET
-                name = :name,
                 subject = :subject,                
-                message = :message,
+                critics = :critics,
+                suggestion = :suggestion,
                 updated_at = :updated_at
               WHERE id = $id";
 
         $this->db->query($query);
-        $this->db->bind('name', $data['name']);
         $this->db->bind('subject', $data['subject']);
-        $this->db->bind('message', $data['message']);
+        $this->db->bind('critics', $data['critics']);
+        $this->db->bind('suggestion', $data['suggestion']);
         $this->db->bind('updated_at', date('Y-m-d H:i:s'));
 
         $this->db->execute();

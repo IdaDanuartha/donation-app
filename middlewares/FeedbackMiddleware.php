@@ -6,21 +6,21 @@ class FeedbackMiddleware {
         unset($_SESSION['error']);
     }
 
-    public function feedbackRules($name, $subject, $message) 
+    public function feedbackRules($subject, $critics, $suggestion) 
     {
-        // Validation if name is empty
-        if(!$name) {
-            $_SESSION['error']['name'] = 'Name is required';
-            return false;
-        }
         // Validation if subject is empty
         if(!$subject) {
             $_SESSION['error']['subject'] = 'Subject is required';
             return false;
         }
-        // Validation if message is empty
-        if(!$message) {
-            $_SESSION['error']['message'] = 'Message is required';
+        // Validation if critics is empty
+        if(!$critics) {
+            $_SESSION['error']['critics'] = 'Critics is required';
+            return false;
+        }
+        // Validation if suggestion is empty
+        if(!$suggestion) {
+            $_SESSION['error']['suggestion'] = 'Suggestion is required';
             return false;
         }
 

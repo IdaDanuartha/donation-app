@@ -41,13 +41,13 @@ if(isset($_POST['submit'])) {
             fmxw-500
           "
         >
-        <h4 class="text-center">Signup Page</h4>
+        <h4 class="text-center">Create New Account</h4>
           <div class="mt-3">
             <?php Flasher::flash() ?>
           </div>
           <form action="" method="post" class="mt-4">
           <div class="form-group mb-4">
-              <label for="name">Name</label>
+              <label for="username">Username</label>
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon1">
                 <i class="fa-solid fa-user"></i>
@@ -55,14 +55,14 @@ if(isset($_POST['submit'])) {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Name"
-                  name="name"
-                  value="<?= isset($_POST['name']) ? $_POST['name'] : '' ?>"
+                  placeholder="Username"
+                  name="username"
+                  value="<?= isset($_POST['username']) ? $_POST['username'] : '' ?>"
                 />
               </div>
-              <?php if(isset($_SESSION['error']['name'])) : ?>
+              <?php if(isset($_SESSION['error']['username'])) : ?>
                 <div class="alert alert-danger mt-2">
-                  <?= $_SESSION['error']['name'] ?>
+                  <?= $_SESSION['error']['username'] ?>
                 </div>
               <?php endif; ?>
             </div>
@@ -87,7 +87,6 @@ if(isset($_POST['submit'])) {
               <?php endif; ?>
             </div>
 
-            <div class="form-group">
               <div class="form-group mb-4">
                 <label for="password">Password</label>
                 <div class="input-group">
@@ -99,6 +98,7 @@ if(isset($_POST['submit'])) {
                     placeholder="Password"
                     class="form-control"
                     name="password"
+                    value="<?= isset($_POST['password']) ? $_POST['password'] : '' ?>"
                   />
                 </div>
                 <?php if(isset($_SESSION['error']['password'])) : ?>
@@ -107,10 +107,8 @@ if(isset($_POST['submit'])) {
                 </div>
               <?php endif; ?>
               </div>
-            </div>
 
-            <div class="form-group">
-              <div class="form-group">
+              <div class="form-group mb-4">
                 <label for="confirm_password">Confirm Password</label>
                 <div class="input-group">
                   <span class="input-group-text" id="basic-addon2">
@@ -122,6 +120,41 @@ if(isset($_POST['submit'])) {
                     class="form-control"
                     name="confirm_password"
                   />
+                </div>
+              </div>
+
+            <div class="form-group">
+              <div class="form-group">
+                <label for="confirm_password">Select Role</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon2">
+                  <i class="fa-solid fa-user-shield"></i>
+                  </span>
+                  <select                    
+                    class="form-select"
+                    name="level"
+                  >
+                  <option value="staff"
+                    <?php if(isset($_POST['level'])) : ?>
+                      <?= $_POST['level'] == 'staff' ? 'selected' : '' ?>
+                    <?php endif; ?>
+                  >Staff</option>
+                  <option value="alumni" 
+                    <?php if(isset($_POST['level'])) : ?>
+                      <?= $_POST['level'] == 'alumni' ? 'selected' : '' ?>
+                    <?php endif; ?>
+                   >Alumni</option>
+                  <option value="visitor"
+                    <?php if(isset($_POST['level'])) : ?>
+                      <?= $_POST['level'] == 'visitor' ? 'selected' : '' ?>
+                    <?php endif; ?>
+                  >Visitor</option>
+                  <option value="student"
+                    <?php if(isset($_POST['level'])) : ?>
+                      <?= $_POST['level'] == 'student' ? 'selected' : '' ?>
+                    <?php endif; ?>
+                  >Student</option>
+                </select>
                 </div>
               </div>
             </div>

@@ -31,11 +31,11 @@ class Review extends Model {
     public function store($data) {
         $query = "INSERT INTO {$this->table}
                     VALUES
-                (null, :name, :subject, :message, :created_at, :updated_at)";
+                (null, :subject, :rating, :message, :created_at, :updated_at)";
 
         $this->db->query($query);
-        $this->db->bind('name', $data['name']);
         $this->db->bind('subject', $data['subject']);
+        $this->db->bind('rating', $data['rating']);
         $this->db->bind('message', $data['message']);
         $this->db->bind('created_at', date('Y-m-d H:i:s'));
         $this->db->bind('updated_at', date('Y-m-d H:i:s'));
@@ -48,15 +48,15 @@ class Review extends Model {
     public function update($data, $id) {
 
         $query = "UPDATE {$this->table} SET
-                name = :name,
                 subject = :subject,                
+                rating = :rating,                
                 message = :message,
                 updated_at = :updated_at
               WHERE id = $id";
 
         $this->db->query($query);
-        $this->db->bind('name', $data['name']);
         $this->db->bind('subject', $data['subject']);
+        $this->db->bind('rating', $data['rating']);
         $this->db->bind('message', $data['message']);
         $this->db->bind('updated_at', date('Y-m-d H:i:s'));
 

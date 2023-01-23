@@ -6,16 +6,16 @@ class ReviewMiddleware {
         unset($_SESSION['error']);
     }
 
-    public function reviewRules($name, $subject, $message) 
+    public function reviewRules($subject, $rating, $message) 
     {
-        // Validation if name is empty
-        if(!$name) {
-            $_SESSION['error']['name'] = 'Name is required';
-            return false;
-        }
         // Validation if subject is empty
         if(!$subject) {
             $_SESSION['error']['subject'] = 'Subject is required';
+            return false;
+        }
+        // Validation if rating is empty
+        if(!$rating) {
+            $_SESSION['error']['rating'] = 'Rating is required';
             return false;
         }
         // Validation if message is empty

@@ -34,11 +34,12 @@ class User extends Model {
     {
         $hash = password_hash($data['password'], PASSWORD_DEFAULT);
 
-        $this->db->query("INSERT INTO {$this->table} (name, email, password) VALUES (:name, :email, :password)");
+        $this->db->query("INSERT INTO {$this->table} (username, email, password, level) VALUES (:username, :email, :password, :level)");
 
-        $this->db->bind('name', $data['name']);
+        $this->db->bind('username', $data['username']);
         $this->db->bind('email', $data['email']);
         $this->db->bind('password', $hash);
+        $this->db->bind('level', $data['level']);
 
         $this->db->execute();
         return $this->db->rowCount();

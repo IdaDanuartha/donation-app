@@ -6,13 +6,24 @@ class AuthMiddleware {
         unset($_SESSION['error']);
     }
 
-    public function registerRules($name, $email, $password, $confirm_password) 
+    public function registerRules($username, $email, $password, $confirm_password) 
     {
-        // Validation if name is empty
-        if(!$name) {
-            $_SESSION['error']['name'] = 'Name is required';
+        // Validation if field not not include number
+        $username_lowercase = preg_match('@[a-z]@', $username);
+        $username_number    = preg_match('@[0-9]@', $username);
+
+        // Validation if username is empty
+        if(!$username) {
+            $_SESSION['error']['username'] = 'Username is required';
             return false;
         }
+
+        // Validation if username format invalid
+        if(!$username_lowercase || !$username_number || strlen($username) < 5) {
+            $_SESSION['error']['username'] = 'Username should be at least 5 characters in length, should include at least one lowercase and one number';
+            return false;
+        }
+
         // Validation if email is empty
         if(!$email) {
             $_SESSION['error']['email'] = 'Email is required';
@@ -29,14 +40,12 @@ class AuthMiddleware {
             return false;
         }   
         
-        
-        // Validation if password length less than 6, not include one uppercase, not include number
-        $uppercase = preg_match('@[A-Z]@', $password);
-        $lowercase = preg_match('@[a-z]@', $password);
-        $number    = preg_match('@[0-9]@', $password);   
+        $pass_uppercase = preg_match('@[A-Z]@', $password);
+        $pass_lowercase = preg_match('@[a-z]@', $password);
+        $pass_number    = preg_match('@[0-9]@', $password);
 
-        if(!$uppercase || !$lowercase || !$number || strlen($password) < 6) {
-            $_SESSION['error']['password'] = 'Password should be at least 6 characters in length, should include at least one upper case letter, and one number';
+        if(!$pass_uppercase || !$pass_lowercase || !$pass_number || strlen($password) < 6) {
+            $_SESSION['error']['password'] = 'Password should be at least 6 characters in length, should include at least one upper case letter, one lower case letter and one number';
             return false;
         }
 

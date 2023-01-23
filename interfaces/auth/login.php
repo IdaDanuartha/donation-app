@@ -42,7 +42,7 @@ if(isset($_POST['submit'])) {
             fmxw-500
           "
         >
-        <h4 class="text-center">Login Page</h4>
+        <h4 class="text-center">Sign In</h4>
         <div class="mt-3">
           <?php Flasher::flash() ?>          
         </div>
@@ -95,7 +95,7 @@ if(isset($_POST['submit'])) {
             </div>
 
             <div class="d-grid">
-              <button type="submit" name="submit" class="btn btn-info">Sign In</button>
+              <button type="submit" name="submit" class="btn btn-info">Login</button>
             </div>
           </form>
         </div>

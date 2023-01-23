@@ -36,7 +36,7 @@ class FeedbackController extends Controller {
 
     public function store()
     {
-        $rules = $this->feedbackMiddleware->feedbackRules($_POST['name'], $_POST['subject'], $_POST['message']);
+        $rules = $this->feedbackMiddleware->feedbackRules($_POST['subject'], $_POST['rating'], $_POST['message']);
 
         if($rules) {
             if($this->feedback->store($_POST) > 0) {
@@ -50,7 +50,7 @@ class FeedbackController extends Controller {
 
     public function update($id)
     {
-        $rules = $this->feedbackMiddleware->feedbackRules($_POST['name'], $_POST['subject'], $_POST['message']);
+        $rules = $this->feedbackMiddleware->feedbackRules($_POST['subject'], $_POST['rating'], $_POST['message']);
 
         if($rules) {
             if($this->feedback->update($_POST, $id) > 0) {
