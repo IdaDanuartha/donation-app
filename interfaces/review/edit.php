@@ -162,16 +162,7 @@ if(isset($_POST['update'])) {
             <div class="card-body">
               <h5><img src="../assets/img/review.svg" alt="" width="30"> Edit Review</h5>
               <hr>
-              <form action="" method="post">
-                <div class="mb-4">
-                    <label for="name">Name</label> 
-                    <input type="text" name="name" id="name" value="<?= $data['name'] ?>" class="form-control" placeholder="Input reviewer name">                    
-                    <?php if(isset($_SESSION['error']['name'])) : ?>
-                        <div class="alert alert-danger mt-2">
-                            <?= $_SESSION['error']['name'] ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
+              <form action="" method="post">                
                 <div class="mb-4">
                     <label for="subject">Subject</label> 
                     <input type="text" name="subject" id="subject" value="<?= $data['subject'] ?>" class="form-control" placeholder="Input subject review">                    
@@ -181,6 +172,15 @@ if(isset($_POST['update'])) {
                         </div>
                     <?php endif; ?>
                 </div> 
+                <div class="mb-4">
+                    <label for="rating">Rating</label> 
+                    <input type="text" name="rating" id="rating" value="<?= $data['rating'] ?>" class="form-control">                    
+                    <?php if(isset($_SESSION['error']['rating'])) : ?>
+                        <div class="alert alert-danger mt-2">
+                            <?= $_SESSION['error']['rating'] ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
                 <div class="mb-4">
                     <label for="message">Review</label> 
                     <textarea type="text" name="message" id="message" class="form-control" placeholder="Input your review" rows="6"><?= $data['message'] ?></textarea>                    

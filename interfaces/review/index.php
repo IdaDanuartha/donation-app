@@ -188,8 +188,8 @@ if(isset($_POST['delete'])) {
                                 <thead class="thead-dark">
                                     <tr class="border-0">
                                         <th class="border-0 rounded-start" style="width:5%">No.</th>
-                                        <th class="border-0">Name</th>
                                         <th class="border-0">Subject</th>
+                                        <th class="border-0">Rating</th>
                                         <th class="border-0 rounded-end" style="width:15%">Action</th>
                                     </tr>
                                 </thead>
@@ -199,8 +199,8 @@ if(isset($_POST['delete'])) {
                                         <?php foreach($review->getReviews() as $index => $review) : ?>
                                             <tr>
                                                 <td class="fw-bold text-center"><?= ++$index ?></td>
-                                                <td><?= $review['name'] ?></td>
                                                 <td><?= $review['subject'] ?></td>
+                                                <td><?= $review['rating'] ?></td>
                                                 <td class="">
                                                     <a href="edit.php?id=<?= $review['id'] ?>" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></a>
                                                     <button data-bs-toggle="modal" data-bs-target="#deleteReviewModal" value="<?= $review['id'] ?>" class="btn btn-sm btn-danger border-0 delete-btn"><i class="fa fa-trash"></i></button>

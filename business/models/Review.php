@@ -11,7 +11,7 @@ class Review extends Model {
 
     public function getReviews($keyword)
     {
-        $query = "SELECT * FROM {$this->table} WHERE name LIKE :keyword ORDER BY created_at DESC";
+        $query = "SELECT * FROM {$this->table} WHERE subject LIKE :keyword ORDER BY created_at DESC";
         $this->db->query($query);
         $this->db->bind("keyword", "%$keyword%");
 
