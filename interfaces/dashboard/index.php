@@ -65,10 +65,10 @@ if(isset($_POST['logout'])) {
                 <li class="nav-item">
                     <span class="mt-2 d-flex justify-content-between">
                         <span>
-                            <span class="sidebar-icon">
+                            <!-- <span class="sidebar-icon">
                                 <i class="fa-solid fa-circle-dollar-to-slot me-2 fa-lg"></i>
-                            </span>
-                            <span class="sidebar-text fw-bold">E-Donate</span>
+                            </span> -->
+                            <span class="sidebar-text fw-bold">Review & Feedback</span>
                         </span>
                     </span>
                 </li>

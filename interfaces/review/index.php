@@ -74,10 +74,10 @@ if(isset($_POST['delete'])) {
                     <span class="mt-2 d-flex justify-content-between">
                         <span>
                             <span>
-                                <span class="sidebar-icon">
+                            <!-- <span class="sidebar-icon">
                                     <i class="fa-solid fa-circle-dollar-to-slot me-2 fa-lg"></i>
-                                </span>
-                                <span class="sidebar-text fw-bold">E-Donate</span>
+                                </span> -->
+                                <span class="sidebar-text fw-bold">Review & Feedback</span>
                             </span>
                         </span>
                     </span>

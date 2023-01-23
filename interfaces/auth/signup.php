@@ -131,7 +131,7 @@ if(isset($_POST['submit'])) {
             </div>
 
             <div class="d-grid">
-              <button type="submit" name="submit" class="btn btn-gray-800">Sign Up</button>
+              <button type="submit" name="submit" class="btn btn-info">Sign Up</button>
             </div>
           </form>
         </div>

@@ -70,10 +70,10 @@ if(isset($_POST['store'])) {
                     <span class="mt-2 d-flex justify-content-between">
                         <span>
                             <span>
-                                <span class="sidebar-icon">
+                            <!-- <span class="sidebar-icon">
                                     <i class="fa-solid fa-circle-dollar-to-slot me-2 fa-lg"></i>
-                                </span>
-                                <span class="sidebar-text fw-bold">E-Donate</span>
+                                </span> -->
+                                <span class="sidebar-text fw-bold">Review & Feedback</span>
                             </span>
                         </span>
                     </span>
@@ -181,8 +181,8 @@ if(isset($_POST['store'])) {
                     <?php endif; ?>                  
                 </div> 
                 <div class="mb-4">
-                    <label for="message">Message</label> 
-                    <textarea type="text" name="message" id="message" class="form-control" placeholder="Input message review" rows="6"><?= isset($_POST['message']) ? $_POST['message'] : '' ?></textarea>                    
+                    <label for="message">Review</label> 
+                    <textarea type="text" name="message" id="message" class="form-control" placeholder="Input your review" rows="6"><?= isset($_POST['message']) ? $_POST['message'] : '' ?></textarea>                    
                     <?php if(isset($_SESSION['error']['message'])) : ?>
                         <div class="alert alert-danger mt-2">
                             <?= $_SESSION['error']['message'] ?>
