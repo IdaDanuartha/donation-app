@@ -67,7 +67,7 @@ class User extends Model {
         $hashedPass = $row['password'];
 
         if(password_verify($data['password'], $hashedPass)) {
-            $_SESSION['user_session'] = $data['id'];
+            $_SESSION['user_session'] = $row;
             $_SESSION['login'] = true;
             return $row;
         } else {

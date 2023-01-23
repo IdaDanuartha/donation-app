@@ -103,16 +103,18 @@ if(isset($_POST['delete'])) {
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="../review/index.php" class="nav-link d-flex justify-content-between">
-                    <span>
-                        <span class="sidebar-icon">
-                            <img src="../assets/img/review.svg" width="20" alt="">
+                <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
+                    <li class="nav-item">
+                        <a href="../review/index.php" class="nav-link d-flex justify-content-between">
+                        <span>
+                            <span class="sidebar-icon">
+                                <img src="../assets/img/review.svg" width="20" alt="">
+                            </span>
+                            <span class="sidebar-text">Review</span>
                         </span>
-                        <span class="sidebar-text">Review</span>
-                    </span>
-                    </a>
-                </li>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
                 <li class="nav-item active">
                     <a href="../feedback/index.php" class="nav-link d-flex justify-content-between">
@@ -184,36 +186,67 @@ if(isset($_POST['delete'])) {
                     <div class="card-body">
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
-                                <thead class="thead-dark">
-                                    <tr class="border-0">
-                                        <th class="border-0 rounded-start" style="width:5%">No.</th>
-                                        <th class="border-0">Name</th>
-                                        <th class="border-0">Subject</th>
-                                        <th class="border-0 rounded-end" style="width:15%">Action</th>
-                                    </tr>
-                                </thead>
-                                <div class="mt-2"></div>
-                                <tbody>                                    
-                                    <?php if(count($feedback->getFeedbacks()) > 0) : ?>
-                                        <?php foreach($feedback->getFeedbacks() as $index => $feedback) : ?>
-                                            <tr>
-                                                <td class="fw-bold text-center"><?= ++$index ?></td>
-                                                <td><?= $feedback['name'] ?></td>
-                                                <td><?= $feedback['subject'] ?></td>
-                                                <td class="">
-                                                    <a href="edit.php?id=<?= $feedback['id'] ?>" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></a>
-                                                    <button data-bs-toggle="modal" data-bs-target="#deleteFeedbackModal" value="<?= $feedback['id'] ?>" class="btn btn-sm btn-danger border-0 delete-btn"><i class="fa fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    <?php else : ?>
-                                        <tr>
-                                            <td colspan="4" class="text-center text-muted">No data feedback</td>
+                            <?php if($_SESSION['user_session'] === 'alumni associations') : ?>
+                                <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
+                                    <thead class="thead-dark">
+                                        <tr class="border-0">
+                                            <th class="border-0 rounded-start" style="width:5%">No.</th>
+                                            <th class="border-0">Username</th>
+                                            <th class="border-0">Subject</th>
+                                            <th class="border-0 rounded-end" style="width:15%">Action</th>
                                         </tr>
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <div class="mt-2"></div>
+                                    <tbody>                                    
+                                        <?php if(count($feedback->getFeedbacks()) > 0) : ?>
+                                            <?php foreach($feedback->getFeedbacks() as $index => $feedback) : ?>
+                                                <tr>
+                                                    <td class="fw-bold text-center"><?= ++$index ?></td>
+                                                    <td><?= $feedback['username'] ?></td>
+                                                    <td><?= $feedback['subject'] ?></td>
+                                                    <td class="">
+                                                        <a href="edit.php?id=<?= $feedback['id'] ?>" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></a>
+                                                        <button data-bs-toggle="modal" data-bs-target="#deleteFeedbackModal" value="<?= $feedback['id'] ?>" class="btn btn-sm btn-danger border-0 delete-btn"><i class="fa fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else : ?>
+                                            <tr>
+                                                <td colspan="4" class="text-center text-muted">No data feedback</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            <?php else : ?>
+                                <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
+                                    <thead class="thead-dark">
+                                        <tr class="border-0">
+                                            <th class="border-0 rounded-start" style="width:5%">No.</th>
+                                            <th class="border-0">Subject</th>
+                                            <th class="border-0 rounded-end" style="width:15%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <div class="mt-2"></div>
+                                    <tbody>                                    
+                                        <?php if(count($feedback->getUserFeedbacks()) > 0) : ?>
+                                            <?php foreach($feedback->getUserFeedbacks() as $index => $feedback) : ?>
+                                                <tr>
+                                                    <td class="fw-bold text-center"><?= ++$index ?></td>
+                                                    <td><?= $feedback['subject'] ?></td>
+                                                    <td class="">
+                                                        <a href="edit.php?id=<?= $feedback['id'] ?>" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></a>
+                                                        <button data-bs-toggle="modal" data-bs-target="#deleteFeedbackModal" value="<?= $feedback['id'] ?>" class="btn btn-sm btn-danger border-0 delete-btn"><i class="fa fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else : ?>
+                                            <tr>
+                                                <td colspan="4" class="text-center text-muted">No data feedback</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            <?php endif; ?>
                         </div>
                         <!-- <Pagination :links="classrooms.links" align="end" /> -->
                     </div>

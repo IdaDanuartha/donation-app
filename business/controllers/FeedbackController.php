@@ -34,6 +34,11 @@ class FeedbackController extends Controller {
         return $this->feedback->getFeedback($id);
     }
 
+    public function getUserFeedbacks()
+    {
+        return $this->feedback->getUserFeedbacks(isset($_GET['keyword']) ? $_GET['keyword'] : '');
+    }
+
     public function store()
     {
         $rules = $this->feedbackMiddleware->feedbackRules($_POST['subject'], $_POST['critics'], $_POST['suggestion']);

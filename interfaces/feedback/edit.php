@@ -99,16 +99,18 @@ if(isset($_POST['update'])) {
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="../review/index.php" class="nav-link d-flex justify-content-between">
-                    <span>
-                        <span class="sidebar-icon">
-                            <img src="../assets/img/review.svg" width="20" alt="">
+                <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
+                    <li class="nav-item">
+                        <a href="../review/index.php" class="nav-link d-flex justify-content-between">
+                        <span>
+                            <span class="sidebar-icon">
+                                <img src="../assets/img/review.svg" width="20" alt="">
+                            </span>
+                            <span class="sidebar-text">Review</span>
                         </span>
-                        <span class="sidebar-text">Review</span>
-                    </span>
-                    </a>
-                </li>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
                 <li class="nav-item active">
                     <a href="../feedback/index.php" class="nav-link d-flex justify-content-between">
@@ -162,16 +164,7 @@ if(isset($_POST['update'])) {
             <div class="card-body">
               <h5><img src="../assets/img/feedback.svg" alt="" width="30"> Edit Feedback</h5>
               <hr>
-              <form action="" method="post">
-                <div class="mb-4">
-                    <label for="name">Name</label> 
-                    <input type="text" name="name" id="name" value="<?= $data['name'] ?>" class="form-control" placeholder="Input feedbacker name">                    
-                    <?php if(isset($_SESSION['error']['name'])) : ?>
-                        <div class="alert alert-danger mt-2">
-                            <?= $_SESSION['error']['name'] ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
+              <form action="" method="post">                
                 <div class="mb-4">
                     <label for="subject">Subject</label> 
                     <input type="text" name="subject" id="subject" value="<?= $data['subject'] ?>" class="form-control" placeholder="Input subject feedback">                    
@@ -182,11 +175,20 @@ if(isset($_POST['update'])) {
                     <?php endif; ?>
                 </div> 
                 <div class="mb-4">
-                    <label for="message">Feedback</label> 
-                    <textarea type="text" name="message" id="message" class="form-control" placeholder="Input your feedback" rows="6"><?= $data['message'] ?></textarea>                    
-                    <?php if(isset($_SESSION['error']['message'])) : ?>
+                    <label for="critics">Critics</label> 
+                    <textarea type="text" name="critics" id="critics" class="form-control" placeholder="Input your critics" rows="6"><?= $data['critics'] ?></textarea>                    
+                    <?php if(isset($_SESSION['error']['critics'])) : ?>
                         <div class="alert alert-danger mt-2">
-                            <?= $_SESSION['error']['message'] ?>
+                            <?= $_SESSION['error']['critics'] ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="mb-4">
+                    <label for="suggestion">Suggestion</label> 
+                    <textarea type="text" name="suggestion" id="suggestion" class="form-control" placeholder="Input your suggestion" rows="6"><?= $data['suggestion'] ?></textarea>                    
+                    <?php if(isset($_SESSION['error']['suggestion'])) : ?>
+                        <div class="alert alert-danger mt-2">
+                            <?= $_SESSION['error']['suggestion'] ?>
                         </div>
                     <?php endif; ?>
                 </div>                

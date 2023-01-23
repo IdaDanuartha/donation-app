@@ -102,16 +102,18 @@ if(isset($_POST['delete'])) {
                     </a>
                 </li>
 
-                <li class="nav-item active">
-                    <a href="../review/index.php" class="nav-link d-flex justify-content-between">
-                    <span>
-                        <span class="sidebar-icon">
-                            <img src="../assets/img/review.svg" width="20" alt="">
+                <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
+                    <li class="nav-item active">
+                        <a href="../review/index.php" class="nav-link d-flex justify-content-between">
+                        <span>
+                            <span class="sidebar-icon">
+                                <img src="../assets/img/review.svg" width="20" alt="">
+                            </span>
+                            <span class="sidebar-text">Review</span>
                         </span>
-                        <span class="sidebar-text">Review</span>
-                    </span>
-                    </a>
-                </li>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
                 <li class="nav-item">
                     <a href="../feedback/index.php" class="nav-link d-flex justify-content-between">

@@ -27,6 +27,7 @@ if(isset($_POST['update'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/volt.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>Edit Review</title>
@@ -99,16 +100,18 @@ if(isset($_POST['update'])) {
                     </a>
                 </li>
 
-                <li class="nav-item active">
-                    <a href="../review/index.php" class="nav-link d-flex justify-content-between">
-                    <span>
-                        <span class="sidebar-icon">
-                            <img src="../assets/img/review.svg" width="20" alt="">
+                <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
+                    <li class="nav-item active">
+                        <a href="../review/index.php" class="nav-link d-flex justify-content-between">
+                        <span>
+                            <span class="sidebar-icon">
+                                <img src="../assets/img/review.svg" width="20" alt="">
+                            </span>
+                            <span class="sidebar-text">Review</span>
                         </span>
-                        <span class="sidebar-text">Review</span>
-                    </span>
-                    </a>
-                </li>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
                 <li class="nav-item">
                     <a href="../feedback/index.php" class="nav-link d-flex justify-content-between">
@@ -174,7 +177,18 @@ if(isset($_POST['update'])) {
                 </div> 
                 <div class="mb-4">
                     <label for="rating">Rating</label> 
-                    <input type="text" name="rating" id="rating" value="<?= $data['rating'] ?>" class="form-control">                    
+                    <div class="star-rating">
+                        <input type="radio" id="5-stars" name="rating" value="5" <?= $data['rating'] == 5 ? 'checked' : '' ?> />
+                        <label for="5-stars" class="star">&#9733;</label>
+                        <input type="radio" id="4-stars" name="rating" value="4" <?= $data['rating'] == 4 ? 'checked' : '' ?> />
+                        <label for="4-stars" class="star">&#9733;</label>
+                        <input type="radio" id="3-stars" name="rating" value="3" <?= $data['rating'] == 3 ? 'checked' : '' ?> />
+                        <label for="3-stars" class="star">&#9733;</label>
+                        <input type="radio" id="2-stars" name="rating" value="2" <?= $data['rating'] == 2 ? 'checked' : '' ?> />
+                        <label for="2-stars" class="star">&#9733;</label>
+                        <input type="radio" id="1-star" name="rating" value="1" <?= $data['rating'] == 1 ? 'checked' : '' ?> />
+                        <label for="1-star" class="star">&#9733;</label>
+                    </div>
                     <?php if(isset($_SESSION['error']['rating'])) : ?>
                         <div class="alert alert-danger mt-2">
                             <?= $_SESSION['error']['rating'] ?>
