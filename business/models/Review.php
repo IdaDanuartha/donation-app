@@ -44,7 +44,6 @@ class Review extends Model {
         $query = "INSERT INTO {$this->table}
                     VALUES
                 (null, :user_id, :subject, :rating, :message, :created_at, :updated_at)";
-
         $this->db->query($query);
         $this->db->bind('user_id', $_SESSION['user_session']['id']);
         $this->db->bind('subject', $data['subject']);
