@@ -200,7 +200,7 @@ if(isset($_POST['delete'])) {
                     <div class="card-body">
 
                         <div class="table-responsive">
-                            <?php if($_SESSION['user_session'] === 'alumni associations') : ?>
+                            <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
                                 <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
                                     <thead class="thead-dark">
                                         <tr class="border-0">
