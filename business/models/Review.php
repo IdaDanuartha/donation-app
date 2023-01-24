@@ -11,7 +11,7 @@ class Review extends Model {
 
     public function getReviews($keyword)
     {
-        $query = "SELECT * FROM {$this->table} WHERE subject LIKE :keyword ORDER BY created_at DESC";
+        $query = "call selectReviews()";
         $this->db->query($query);
         $this->db->bind("keyword", "%$keyword%");
 
@@ -29,9 +29,7 @@ class Review extends Model {
     }
 
     public function store($data) {
-        $query = "INSERT INTO {$this->table}
-                    VALUES
-                (null, :subject, :rating, :message, :created_at, :updated_at)";
+        $query = "call insertReview(:subject, :rating, :message, :created_at, :updated_at)";
 
         $this->db->query($query);
         $this->db->bind('subject', $data['subject']);
