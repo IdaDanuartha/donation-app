@@ -162,7 +162,7 @@ if(isset($_POST['logout'])) {
             <div class="container-fluid px-0">
                 <div class="d-flex justify-content-between w-100" id="navbarSupportedContent">
                     <div class="d-flex align-items-center">
-                        <h3>Feedback Page</h3>
+                        <h3>User Page</h3>
                     </div>
                 </div>
             </div>
