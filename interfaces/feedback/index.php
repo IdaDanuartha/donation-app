@@ -104,8 +104,10 @@ if(isset($_POST['delete'])) {
                         </span>
                         </a>
                     </li>
+                <?php endif; ?>
 
-                    <li class="nav-item">
+                <?php if($_SESSION['user_session']['level'] === 'alumni associations' || $_SESSION['user_session']['level'] === 'student') : ?>
+                <li class="nav-item">
                         <a href="../review/index.php" class="nav-link d-flex justify-content-between">
                         <span>
                             <span class="sidebar-icon">
@@ -200,7 +202,7 @@ if(isset($_POST['delete'])) {
                     <div class="card-body">
 
                         <div class="table-responsive">
-                            <?php if($_SESSION['user_session'] === 'alumni associations') : ?>
+                            <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
                                 <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
                                     <thead class="thead-dark">
                                         <tr class="border-0">

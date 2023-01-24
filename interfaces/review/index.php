@@ -85,24 +85,26 @@ if(isset($_POST['delete'])) {
 
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
 
-                <li class="nav-item">
-                    <a href="../dashboard/index.php" class="nav-link d-flex justify-content-between">
-                    <span>
-                        <span class="sidebar-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                class="bi bi-speedometer2 icon icon-xs" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z" />
-                                <path fill-rule="evenodd"
-                                    d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z" />
-                            </svg>
-                        </span>
-                        <span class="sidebar-text">Dashboard</span>
-                    </span>
-                    </a>
-                </li>
-
                 <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
+                    <li class="nav-item">
+                        <a href="../dashboard/index.php" class="nav-link d-flex justify-content-between">
+                        <span>
+                            <span class="sidebar-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                    class="bi bi-speedometer2 icon icon-xs" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z" />
+                                    <path fill-rule="evenodd"
+                                        d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z" />
+                                </svg>
+                            </span>
+                            <span class="sidebar-text">Dashboard</span>
+                        </span>
+                        </a>
+                    </li>                    
+                <?php endif; ?>
+
+                <?php if($_SESSION['user_session']['level'] === 'student' || $_SESSION['user_session']['level'] === 'alumni associations') : ?>
                     <li class="nav-item active">
                         <a href="../review/index.php" class="nav-link d-flex justify-content-between">
                         <span>
@@ -199,41 +201,67 @@ if(isset($_POST['delete'])) {
                     <div class="card-body">
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
-                                <thead class="thead-dark">
-                                    <tr class="border-0">
-                                        <th class="border-0 rounded-start" style="width:5%">No.</th>
-                                        <th class="border-0">Subject</th>
-                                        <th class="border-0">Rating</th>
-                                        <th class="border-0 rounded-end" style="width:15%">Action</th>
-                                    </tr>
-                                </thead>
-                                <div class="mt-2"></div>
-                                <tbody>
-                                    <?php if(count($review->getReviews()) > 0) : ?>
-                                        <?php foreach($review->getReviews() as $index => $review) : ?>
-                                            <tr>
-                                                <td class="fw-bold text-center"><?= ++$index ?></td>
-                                                <td><?= $review['subject'] ?></td>
-                                                <td>
-                                                    <?php for($i = 0; $i < $review['rating']; $i++) : ?>
-                                                        <i class="fa-solid fa-star fa-md" style="color: #f90;"></i>
-                                                    <?php endfor; ?>
-                                                    <span>(<?= $review['rating'] ?>)</span>
-                                                </td>
-                                                <td class="">
-                                                    <a href="edit.php?id=<?= $review['id'] ?>" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></a>
-                                                    <button data-bs-toggle="modal" data-bs-target="#deleteReviewModal" value="<?= $review['id'] ?>" class="btn btn-sm btn-danger border-0 delete-btn"><i class="fa fa-trash"></i></button>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    <?php else : ?>
-                                        <tr>
-                                            <td colspan="4" class="text-center text-muted">No data review</td>
+                            <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
+                                <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
+                                    <thead class="thead-dark">
+                                        <tr class="border-0">
+                                            <th class="border-0 rounded-start" style="width:5%">No.</th>
+                                            <th class="border-0">Username</th>
+                                            <th class="border-0">Subject</th>
+                                            <th class="border-0 rounded-end" style="width:15%">Action</th>
                                         </tr>
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <div class="mt-2"></div>
+                                    <tbody>
+                                        <?php if(count($review->getReviews()) > 0) : ?>
+                                            <?php foreach($review->getReviews() as $index => $review) : ?>
+                                                <tr>
+                                                    <td class="fw-bold text-center"><?= ++$index ?></td>
+                                                    <td><?= $review['username'] ?></td>
+                                                    <td><?= $review['subject'] ?></td>
+                                                    <td class="">
+                                                        <a href="edit.php?id=<?= $review['id'] ?>" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></a>
+                                                        <button data-bs-toggle="modal" data-bs-target="#deleteReviewModal" value="<?= $review['id'] ?>" class="btn btn-sm btn-danger border-0 delete-btn"><i class="fa fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else : ?>
+                                            <tr>
+                                                <td colspan="4" class="text-center text-muted">No data review</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            <?php else : ?>
+                                <table class="table table-bordered table-centered table-nowrap mb-0 rounded">
+                                    <thead class="thead-dark">
+                                        <tr class="border-0">
+                                            <th class="border-0 rounded-start" style="width:5%">No.</th>
+                                            <th class="border-0">Subject</th>
+                                            <th class="border-0 rounded-end" style="width:15%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <div class="mt-2"></div>
+                                    <tbody>                                    
+                                        <?php if(count($review->getUserReviews()) > 0) : ?>
+                                            <?php foreach($review->getUserReviews() as $index => $review) : ?>
+                                                <tr>
+                                                    <td class="fw-bold text-center"><?= ++$index ?></td>
+                                                    <td><?= $review['subject'] ?></td>
+                                                    <td class="">
+                                                        <a href="edit.php?id=<?= $review['id'] ?>" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></a>
+                                                        <button data-bs-toggle="modal" data-bs-target="#deleteReviewModal" value="<?= $review['id'] ?>" class="btn btn-sm btn-danger border-0 delete-btn"><i class="fa fa-trash"></i></button>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else : ?>
+                                            <tr>
+                                                <td colspan="4" class="text-center text-muted">No data feedback</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            <?php endif; ?>
                         </div>
                         <nav>
                         <!-- Pagination -->

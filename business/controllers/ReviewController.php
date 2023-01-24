@@ -30,6 +30,11 @@ class ReviewController extends Controller {
         return $this->review->getReviews(isset($_GET['keyword']) ? $_GET['keyword'] : '');
     }
 
+    public function getUserReviews()
+    {
+        return $this->review->getUserReviews(isset($_GET['keyword']) ? $_GET['keyword'] : '');
+    }
+
     public function getReview($id)
     {
         return $this->review->getReview($id);

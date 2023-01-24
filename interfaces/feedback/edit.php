@@ -100,8 +100,10 @@ if(isset($_POST['update'])) {
                         </span>
                         </a>
                     </li>
+                <?php endif; ?>
 
-                    <li class="nav-item">
+                <?php if($_SESSION['user_session']['level'] === 'alumni associations' || $_SESSION['user_session']['level'] === 'student') : ?>
+                <li class="nav-item">
                         <a href="../review/index.php" class="nav-link d-flex justify-content-between">
                         <span>
                             <span class="sidebar-icon">

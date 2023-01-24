@@ -82,7 +82,8 @@ if(isset($_POST['update'])) {
                 </li>
 
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
-
+                
+                <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
                 <li class="nav-item">
                     <a href="../dashboard/index.php" class="nav-link d-flex justify-content-between">
                     <span>
@@ -99,8 +100,9 @@ if(isset($_POST['update'])) {
                     </span>
                     </a>
                 </li>
+                <?php endif; ?>
 
-                <?php if($_SESSION['user_session']['level'] === 'alumni associations') : ?>
+                <?php if($_SESSION['user_session']['level'] === 'student' || $_SESSION['user_session']['level'] === 'alumni associations') : ?>
                     <li class="nav-item active">
                         <a href="../review/index.php" class="nav-link d-flex justify-content-between">
                         <span>
